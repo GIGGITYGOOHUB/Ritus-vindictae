@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ritus Vindictae | Ex Umbra Venimus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Special+Elite&family=Cinzel+Decorative&family=IM+Fell+English+SC&display=swap');
+        
+        body {
+            font-family: 'Special Elite', cursive;
+            background-color: #0a0a0a;
+            color: #c0c0c0;
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABhSURBVGhD7c6xDcAgDABRdwj+Z8zGZqCQ0iQO4HdX6Z2k2zLzAgAAAAAAAAAAAAAAAADw1ZqZcXfPzLh7ZmbcPTMz7p6ZGXfPzIy7Z2bG3TMz4+6ZmXH3zMy4e2Zm3D0zM+6emRl3z8yMu2dmxt0zM+PuAAAAAAAAAAAAAADw1wJqgQj5XHjQJAAAAABJRU5ErkJggg==');
+            background-attachment: fixed;
+        }
+        
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            animation: glitch-anim-2 2s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(24px, 9999px, 90px, 0); }
+            20% { clip: rect(65px, 9999px, 119px, 0); }
+            40% { clip: rect(43px, 9999px, 96px, 0); }
+            60% { clip: rect(82px, 9999px, 98px, 0); }
+            80% { clip: rect(91px, 9999px, 58px, 0); }
+            100% { clip: rect(98px, 9999px, 14px, 0); }
+        }
+        
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(85px, 9999px, 15px, 0); }
+            20% { clip: rect(3px, 9999px, 99px, 0); }
+            40% { clip: rect(73px, 9999px, 57px, 0); }
+            60% { clip: rect(10px, 9999px, 2px, 0); }
+            80% { clip: rect(60px, 9999px, 72px, 0); }
+            100% { clip: rect(23px, 9999px, 89px, 0); }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid #8b0000;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #8b0000 }
+        }
+        
+        .document {
+            background: repeating-linear-gradient(
+                #0a0a0a,
+                #0a0a0a 24px,
+                #1a1a1a 25px,
+                #1a1a1a 25px
+            );
+            background-size: 100% 25px;
+            line-height: 25px;
+            padding: 0 1em;
+            border: 1px solid #333;
+            position: relative;
+        }
+        
+        .document::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 30px;
+            height: 100%;
+            width: 1px;
+            background: rgba(255,0,0,0.1);
+        }
+        
+        .redacted {
+            background-color: black;
+            color: transparent;
+            position: relative;
+        }
+        
+        .redacted:hover {
+            color: #c0c0c0;
+            background-color: transparent;
+        }
+        
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.03) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            background-size: 100% 5px;
+            pointer-events: none;
+            animation: scanline 8s linear infinite;
+            z-index: 9999;
+        }
+        
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100vh); }
+        }
+        
+        .terminal {
+            border: 1px solid #333;
+            border-radius: 0;
+            background-color: rgba(0,0,0,0.7);
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            padding: 1rem;
+            position: relative;
+        }
+        
+        .terminal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                rgba(0, 255, 0, 0.1) 0.1em,
+                transparent 0.1em
+            );
+            background-size: 100% 1.2em;
+            pointer-events: none;
+        }
+        
+        .terminal-cursor {
+            animation: blink 1s step-end infinite;
+        }
+        
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="scanline"></div>
+    
+    <!-- Header -->
+    <header class="border-b border-red-900 py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-xl font-bold font-['Cinzel Decorative'] tracking-wider">
+                <span class="glitch text-red-600" data-text="RITUS VINDICTAE">RITUS VINDICTAE</span>
+            </div>
+            <div class="text-sm italic text-gray-400">
+                <span class="typewriter">EX UMBRA VENIMUS</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto py-8 px-4">
+        <!-- Warning Banner -->
+        <div class="bg-black border border-red-900 p-4 mb-8 flex items-center">
+            <i class="fas fa-exclamation-triangle text-red-600 mr-3 text-xl"></i>
+            <div>
+                <h3 class="text-red-600 font-bold">WARNING: CLASSIFIED INFORMATION</h3>
+                <p class="text-xs">Unauthorized access to this terminal is strictly prohibited and punishable under <span class="redacted">██████████  ████████</span> statute 17-██-████. By continuing, you acknowledge that you have proper clearance.</p>
+            </div>
+        </div>
+        
+        <!-- Terminal Interface -->
+        <div class="terminal mb-8">
+            <div class="mb-2">
+                <span class="text-green-400">user@terminal:~$</span> <span class="text-white">connect secure_server --protocol=darkweb --auth=level5</span>
+            </div>
+            <div class="mb-2">
+                <span class="text-green-400">secure_server:~$</span> <span class="text-white">Welcome, Director ████████</span>
+            </div>
+            <div class="mb-2">
+                <span class="text-green-400">secure_server:~$</span> <span class="text-white">Last login:  ██-██-████ ██:██ from ████████ terminal</span>
+            </div>
+            <div class="mb-2">
+                <span class="text-green-400">secure_server:~$</span> <span class="text-white">Current threat level: <span class="text-red-400">OMEGA</span></span>
+            </div>
+            <div class="mb-2">
+                <span class="text-green-400">secure_server:~$</span> <span class="text-white">Active containment breaches: <span class="text-yellow-400">3</span></span>
+            </div>
+            <div>
+                <span class="text-green-400">secure_server:~$</span> <span class="text-white">_<span class="terminal-cursor">█</span></span>
+            </div>
+        </div>
+        
+        <!-- About Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-['IM Fell English SC'] text-red-600 border-b border-red-900 pb-2 mb-4">ABOUT THE ORGANIZATION</h2>
+            <div class="document">
+                <p>The <span class="font-bold">Ritus Vindictae</span> (Latin: "Rite of Vengeance") is a clandestine organization operating beyond the oversight of conventional governments and international bodies. Our primary mission is the identification, containment, and when necessary, elimination of anomalous entities, objects, and phenomena that threaten the veil of normalcy.</p>
+                
+                <p class="mt-4">Founded in <span class="redacted">████</span> after the <span class="redacted">████████  ██████</span> incident, we operate through a network of <span class="redacted">████</span> global facilities, employing <span class="redacted">██,███</span> personnel across all security clearance levels.</p>
+                
+                <p class="mt-4">Our motto, <span class="italic">"Ex Umbra Venimus"</span> ("From the Shadows We Come"), reflects our operational philosophy. We exist in the liminal spaces between what is known and unknown, acting as humanity's silent guardians against the incomprehensible.</p>
+                
+                <p class="mt-4 text-xs text-red-400">[Further information requires Level 4 clearance or higher]</p>
+            </div>
+        </section>
+        
+        <!-- Classified Documents Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-['IM Fell English SC'] text-red-600 border-b border-red-900 pb-2 mb-4">CLASSIFIED DOCUMENTS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Document Card 1 -->
+                <div class="border border-red-900 hover:border-red-600 transition-colors duration-300">
+                    <div class="bg-black p-3 border-b border-red-900 flex justify-between items-center">
+                        <h3 class="font-bold">RV-001</h3>
+                        <span class="text-xs bg-red-900 px-2 py-1">TOP SECRET</span>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-sm mb-2">The <span class="redacted">███████</span> Phenomenon</p>
+                        <p class="text-xs text-gray-400 mb-3">First encountered:  ██/██/19██</p>
+                        <button class="w-full bg-red-900 hover:bg-red-800 text-white py-1 px-3 text-xs transition-colors duration-300" onclick="alert('ACCESS DENIED\nRequired clearance: Level 5')">
+                            REQUEST ACCESS
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Document Card 2 -->
+                <div class="border border-red-900 hover:border-red-600 transition-colors duration-300">
+                    <div class="bg-black p-3 border-b border-red-900 flex justify-between items-center">
+                        <h3 class="font-bold">RV-076</h3>
+                        <span class="text-xs bg-yellow-600 px-2 py-1">SECRET</span>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-sm mb-2">Containment Procedures for <span class="redacted">"████████"</span></p>
+                        <p class="text-xs text-gray-400 mb-3">Last updated: ██/██/20██</p>
+                        <button class="w-full bg-red-900 hover:bg-red-800 text-white py-1 px-3 text-xs transition-colors duration-300" onclick="alert('ACCESS DENIED\nRequired clearance: Level 3')">
+                            REQUEST ACCESS
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Document Card 3 -->
+                <div class="border border-red-900 hover:border-red-600 transition-colors duration-300">
+                    <div class="bg-black p-3 border-b border-red-900 flex justify-between items-center">
+                        <h3 class="font-bold">RV-198</h3>
+                        <span class="text-xs bg-blue-600 px-2 py-1">CONFIDENTIAL</span>
+                    </div>
+                    <div class="p-3">
+                        <p class="text-sm mb-2">Incident Report: <span class="redacted">Site-██</span> Breach</p>
+                        <p class="text-xs text-gray-400 mb-3">Date: ██/██/20██</p>
+                        <button class="w-full bg-red-900 hover:bg-red-800 text-white py-1 px-3 text-xs transition-colors duration-300" onclick="viewDocument('RV-198')">
+                            VIEW DOCUMENT
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Security Clearance Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-['IM Fell English SC'] text-red-600 border-b border-red-900 pb-2 mb-4">SECURITY CLEARANCE UPGRADE</h2>
+            <div class="document p-4">
+                <p class="mb-4">To access higher clearance materials, please authenticate using your retinal scan and vocal confirmation.</p>
+                
+                <div class="mb-4">
+                    <label class="block text-sm mb-1">Retinal Scan</label>
+                    <div class="bg-black border border-red-900 h-32 flex items-center justify-center">
+                        <i class="fas fa-eye text-red-600 text-2xl"></i>
+                        <span class="ml-2 text-sm">[SCAN IN PROGRESS]</span>
+                    </div>
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm mb-1">Vocal Confirmation</label>
+                    <div class="flex">
+                        <input type="password" class="bg-black border border-red-900 px-3 py-2 flex-grow" placeholder="Speak passphrase...">
+                        <button class="bg-red-900 hover:bg-red-800 text-white px-4 ml-2 transition-colors duration-300">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="bg-red-900 hover:bg-red-800 text-white py-2 px-6 w-full transition-colors duration-300" onclick="alert('AUTHORIZATION FAILED\nBiometric mismatch detected\nSecurity alerted')">
+                    AUTHENTICATE
+                </button>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-red-900 py-4 px-6 text-xs text-gray-500">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-2 md:mb-0">
+                    <p>© 19██-20██ RITUS VINDICTAE | ALL RIGHTS RESERVED</p>
+                </div>
+                <div>
+                    <p>TERMINAL ID: <span class="redacted">RV-███-████-██</span> | LAST SYNC: <span class="redacted">██:██:██ UTC</span></p>
+                </div>
+            </div>
+            <div class="mt-2 text-center md:text-left">
+                <p>This terminal is monitored. Unauthorized access attempts will be met with immediate termination.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Document Modal (hidden by default) -->
+    <div id="documentModal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden">
+        <div class="bg-black border border-red-900 w-full max-w-4xl max-h-screen overflow-y-auto m-4">
+            <div class="bg-black p-3 border-b border-red-900 flex justify-between items-center sticky top-0">
+                <h3 class="font-bold" id="docTitle">DOCUMENT RV-198</h3>
+                <button onclick="closeModal()" class="text-red-600 hover:text-red-400">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="document p-4">
+                <div class="text-center mb-4">
+                    <p class="font-bold">RITUS VINDICTAE CLASSIFIED DOCUMENT</p>
+                    <p class="text-xs">Clearance Level: <span class="text-blue-400">CONFIDENTIAL</span></p>
+                </div>
+                
+                <h4 class="font-bold text-lg border-b border-gray-700 mb-2">INCIDENT REPORT: SITE-██ BREACH</h4>
+                
+                <p class="mb-2"><span class="font-bold">Date:</span>  ██/██/20██</p>
+                <p class="mb-2"><span class="font-bold">Location:</span> <span class="redacted">████████, ████████</span></p>
+                <p class="mb-2"><span class="font-bold">Reporting Officer:</span> Director ████████</p>
+                
+                <h5 class="font-bold mt-4 mb-2">SUMMARY:</h5>
+                <p class="mb-4">At approximately  ██:██ hours, Site-██ experienced a containment breach involving Subject RV-███ ("<span class="redacted">████████</span>"). The breach resulted in <span class="redacted">██</span> casualties and <span class="redacted">█</span> missing personnel before being contained by Mobile Task Force <span class="redacted">Omega-7</span>.</p>
+                
+                <h5 class="font-bold mt-4 mb-2">DETAILS:</h5>
+                <p class="mb-4">Security footage shows that the breach originated in Sector <span class="redacted">██</span>, where Subject RV-███ apparently <span class="redacted">████████  ███ ████████  █████████</span> despite all containment protocols being followed. The subject then proceeded to <span class="redacted">███████  ████████</span> through Levels  █ through █ before being intercepted.</p>
+                
+                <h5 class="font-bold mt-4 mb-2">AFTERMATH:</h5>
+                <ul class="list-disc pl-5 mb-4">
+                    <li>Site-██ has been temporarily decommissioned for repairs and cleansing.</li>
+                    <li>All surviving personnel have been administered Class-B amnestics.</li>
+                    <li>Containment procedures for RV-███ have been updated (see Document RV-███-A).</li>
+                    <li>A cover story involving <span class="redacted">████████ ██████</span> has been disseminated to local authorities.</li>
+                </ul>
+                
+                <h5 class="font-bold mt-4 mb-2">RECOMMENDATIONS:</h5>
+                <ol class="list-decimal pl-5 mb-4">
+                    <li>Increase security personnel in Sector <span class="redacted">██</span> by 50%.</li>
+                    <li>Install additional <span class="redacted">███████</span> detectors in all corridors.</li>
+                    <li>Review all personnel with access to RV-███ for potential <span class="redacted">███████</span> contamination.</li>
+                </ol>
+                
+                <div class="text-xs text-red-400 mt-6 border-t border-gray-700 pt-2">
+                    <p>This document is property of Ritus Vindictae. Unauthorized duplication is punishable by termination.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Terminal typing effect
+        function simulateTerminal() {
+            const lines = [
+                "check_system_status --full",
+                "System Status:",
+                "  - Containment Fields: 98% operational",
+                "  - Anomaly Detection: Active",
+                "  - Security Protocols: Engaged",
+                "  - Memetic Agents: Deployed",
+                "run_diagnostics --sector=all",
+                "Diagnostics complete. 3 anomalies detected.",
+                "alert_mtf --team=omega-7 --priority=high",
+                "Mobile Task Force Omega-7 alerted.",
+                "access_database --query=\"last_containment_breach\"",
+                "Last containment breach: Site-██ on ██/██/20██",
+                "Cause: <span class='redacted'>████████ ████████</span>",
+                "status_update --complete"
+            ];
+            
+            const terminal = document.querySelector('.terminal');
+            let i = 0;
+            
+            function typeNextLine() {
+                if (i < lines.length) {
+                    const lineDiv = document.createElement('div');
+                    lineDiv.innerHTML = `<span class="text-green-400">secure_server:~$</span> <span class="text-white">${lines[i]}</span>`;
+                    terminal.appendChild(lineDiv);
+                    terminal.scrollTop = terminal.scrollHeight;
+                    i++;
+                    setTimeout(typeNextLine, Math.random() * 1500 + 500);
+                } else {
+                    const cursorDiv = document.createElement('div');
+                    cursorDiv.innerHTML = `<span class="text-green-400">secure_server:~$</span> <span class="text-white">_<span class="terminal-cursor">█</span></span>`;
+                    terminal.appendChild(cursorDiv);
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+            }
+            
+            setTimeout(typeNextLine, 2000);
+        }
+        
+        // Document viewing
+        function viewDocument(docId) {
+            document.getElementById('documentModal').classList.remove('hidden');
+            document.getElementById('docTitle').textContent = `DOCUMENT ${docId}`;
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('documentModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Redacted hover effect
+        function setupRedacted() {
+            const redactedElements = document.querySelectorAll('.redacted');
+            redactedElements.forEach(el => {
+                el.addEventListener('mouseover', function() {
+                    this.classList.add('bg-transparent');
+                    this.classList.remove('bg-black');
+                });
+                el.addEventListener('mouseout', function() {
+                    this.classList.add('bg-black');
+                    this.classList.remove('bg-transparent');
+                });
+            });
+        }
+        
+        // Initialize effects
+        window.onload = function() {
+            simulateTerminal();
+            setupRedacted();
+            
+            // Randomly flicker some elements for analog horror effect
+            setInterval(() => {
+                if (Math.random() > 0.95) {
+                    const elements = document.querySelectorAll('.glitch, .terminal, .document');
+                    const randomElement = elements[Math.floor(Math.random() * elements.length)];
+                    randomElement.style.opacity = '0.7';
+                    setTimeout(() => {
+                        randomElement.style.opacity = '1';
+                    }, 100);
+                }
+            }, 5000);
+        };
+    </script>
+</body>
+</html>
